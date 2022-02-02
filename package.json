@@ -1,0 +1,64 @@
+{
+  "name": "aws-node-typescript-rest-api",
+  "version": "1.0.0",
+  "description": "This is simple REST API example for AWS Lambda By Serverless framwork with TypeScript and MongoDB Atlas.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "local": "sls offline --httpPort 4003 --lambdaPort 3025 --noPrependStageInUrl --prefix dev",
+    "deploy": "serverless deploy",
+    "test": "cross-env NODE_ENV=dev mocha -r ts-node/register tests/*.test.ts --exit",
+    "coverage": "nyc --reporter lcov npm run test"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "dependencies": {
+    "@middy/core": "^2.5.4",
+    "@middy/http-error-handler": "^2.5.4",
+    "@middy/http-json-body-parser": "^2.5.4",
+    "@middy/validator": "^2.5.4",
+    "@typescript-eslint/eslint-plugin": "^5.8.0",
+    "dotenv": "^8.2.0",
+    "pg": "^8.7.1",
+    "reflect-metadata": "^0.1.13",
+    "slugify": "^1.6.4",
+    "typeorm": "^0.2.41",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.51",
+    "@types/dotenv-safe": "^8.1.0",
+    "@types/node": "^17.0.4",
+    "cross-env": "^7.0.2",
+    "eslint": "^8.5.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "istanbul": "^0.4.5",
+    "nyc": "^15.0.1",
+    "serverless-offline": "^8.3.1",
+    "serverless-plugin-typescript": "^1.1.9",
+    "ts-node": "^8.9.1",
+    "typescript": "^3.8.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Q-Angelo/aws-node-typescript-rest-api.git"
+  },
+  "keywords": [
+    "Nodejs",
+    "TypeScript",
+    "ServerLess",
+    "MongoDB Atlas",
+    "AWS Lambda"
+  ],
+  "author": "May",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Q-Angelo/aws-node-typescript-rest-api/issues"
+  },
+  "homepage": "https://github.com/Q-Angelo/aws-node-typescript-rest-api#readme"
+}

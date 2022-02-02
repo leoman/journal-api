@@ -1,0 +1,200 @@
+service: journal-api
+app: pmansell
+org: pmansell
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'eu-west-2'}
+  environment:
+    NODE_ENV: dev
+    DB_USER: ${param:user}
+    DB_DATABASE: ${param:database}
+    DB_PASSWORD: ${param:password}
+    DB_POST: ${param:port}
+    DB_HOST: ${param:host}
+
+plugins:
+  - serverless-plugin-typescript 
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    httpPort: 4000
+
+package:
+  # exclude:
+  #   - config/.env.stg
+  #   - config/.env.pro
+  # include:
+  #   - config/.env.dev
+
+functions:
+  ###
+  # Posts
+  ###
+  findPosts:
+    handler: app/routing/posts.findHandler
+    events:
+      - http:
+          path: posts
+          method: get
+  findOnePost:
+    handler: app/routing/posts.findOneHandler
+    events:
+      - http:
+          path: posts/{id}
+          method: get
+  createPost:
+    handler: app/routing/posts.createHandler
+    events:
+      - http:
+          path: post
+          method: post
+  updatePost:
+    handler: app/routing/posts.updateHandler
+    events:
+      - http:
+          path: post/{id}
+          method: patch
+  deleteOnePost:
+    handler: app/routing/posts.deleteOneHandler
+    events:
+      - http:
+          path: post/{id}
+          method: delete
+  ###
+  # Products
+  ###
+  findProducts:
+    handler: app/routing/products.findHandler
+    events:
+      - http:
+          path: products
+          method: get
+  findOneProduct:
+    handler: app/routing/products.findOneHandler
+    events:
+      - http:
+          path: products/{id}
+          method: get
+  createProduct:
+    handler: app/routing/products.createHandler
+    events:
+      - http:
+          path: product
+          method: post
+  updateProduct:
+    handler: app/routing/products.updateHandler
+    events:
+      - http:
+          path: product/{id}
+          method: patch
+  deleteOneProduct:
+    handler: app/routing/products.deleteOneHandler
+    events:
+      - http:
+          path: product/{id}
+          method: delete
+  ###
+  # Themes
+  ###
+  findThemes:
+    handler: app/routing/themes.findHandler
+    events:
+      - http:
+          path: themes
+          method: get
+  findOneThemes:
+    handler: app/routing/themes.findOneHandler
+    events:
+      - http:
+          path: themes/{id}
+          method: get
+  createThemes:
+    handler: app/routing/themes.createHandler
+    events:
+      - http:
+          path: theme
+          method: post
+  updateThemes:
+    handler: app/routing/themes.updateHandler
+    events:
+      - http:
+          path: theme/{id}
+          method: patch
+  deleteOneThemes:
+    handler: app/routing/themes.deleteOneHandler
+    events:
+      - http:
+          path: theme/{id}
+          method: delete
+  ###
+  # Orders
+  ###
+  findOrders:
+    handler: app/routing/orders.findHandler
+    events:
+      - http:
+          path: orders
+          method: get
+  findOneOrders:
+    handler: app/routing/orders.findOneHandler
+    events:
+      - http:
+          path: orders/{id}
+          method: get
+  createOrders:
+    handler: app/routing/orders.createHandler
+    events:
+      - http:
+          path: order
+          method: post
+  updateOrders:
+    handler: app/routing/orders.updateHandler
+    events:
+      - http:
+          path: order/{id}
+          method: patch
+  deleteOneOrders:
+    handler: app/routing/orders.deleteOneHandler
+    events:
+      - http:
+          path: order/{id}
+          method: delete
+  ###
+  # GalleryImages
+  ###
+  findGalleryImages:
+    handler: app/routing/galleryImages.findHandler
+    events:
+      - http:
+          path: gallery-images
+          method: get
+  findOneGalleryImages:
+    handler: app/routing/galleryImages.findOneHandler
+    events:
+      - http:
+          path: gallery-images/{id}
+          method: get
+  createGalleryImages:
+    handler: app/routing/galleryImages.createHandler
+    events:
+      - http:
+          path: gallery-image
+          method: post
+  updateGalleryImages:
+    handler: app/routing/galleryImages.updateHandler
+    events:
+      - http:
+          path: gallery-image/{id}
+          method: patch
+  deleteOneGalleryImages:
+    handler: app/routing/galleryImages.deleteOneHandler
+    events:
+      - http:
+          path: gallery-image/{id}
+          method: delete
